@@ -14,7 +14,12 @@ app.config(["$routeProvider","$locationProvider", function($routeProvider, $loca
         controller: "AboutController",
         caseInsensitiveMatch: true
       })
-      .when("/Contact", {
+      .when("/contact", {
+        templateUrl: "pages/contact.html",
+        controller: "ContactController",
+        caseInsensitiveMatch: true
+      })
+      .when("/Contact/:id", {
         templateUrl: "pages/contact.html",
         controller: "ContactController",
         caseInsensitiveMatch: true
@@ -33,6 +38,7 @@ app.controller("HomeController",["$scope",function($scope){
 app.controller("AboutController",["$scope",function($scope){
   $scope.content =" This is About Page";
 }])
-app.controller("ContactController",["$scope",function($scope){
-  $scope.content =" This is Contact Page";
+app.controller("ContactController",["$scope", "$routeParams",function($scope, $routeParams){
+  $scope.content =" This is Contact Page with value :" + ($routeParams.id || "hello");
+
 }])
